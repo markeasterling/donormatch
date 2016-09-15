@@ -10,4 +10,6 @@ router.register(r'message', views.Message)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^login$', views.login_user, name='login')
+    url(r'^register$', views.register_user, name='register_user')
 ]
