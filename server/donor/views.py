@@ -45,6 +45,7 @@ def register_user(request):
 @csrf_exempt
 def login_user(request):
     request_body = json.loads(request.body.decode())
+    print("REQUEST BODY!!!!", request_body)
 
     authenticated_user = authenticate(
             username=request_body['username'],
