@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
+from django.core import serializers
 from donor.models import Profile, Request, Message
 from donor.serializers import UserSerializer, ProfileSerializer, RequestSerializer, MessageSerializer
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -55,8 +56,23 @@ def login_user(request):
     success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
+        print("request user", request.user.id)
+
     else:
         success = False
 
-    data = json.dumps({"success":success})
+    # data = json.dumps({"success":success})
+    data = json.dumps({"userId":request.user.id,
+                       "username": request.user.username
+                        })
     return HttpResponse(data, content_type='application/json')
+
+@csrf_exempt
+def request_categories(request):
+    data = json.dumps(Request.model.CATEGORY_CHOICES)
+    return HttpResponse(data, content_type="application/json")
+
+# @csrf_exempt
+# def get_current_user(request):
+#
+#     return HttpResponse(request.user.id, content_type="application/json")

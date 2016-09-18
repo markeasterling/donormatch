@@ -5,8 +5,10 @@ app.controller("LoginCtrl", function($http, $location, authFactory) {
     $http.post("http://localhost:8000/login",
     login.user,
     {headers: {"Content-Type": "application/json"}})
-      .then(resp => console.log("the response", resp))
-      .then(() => authFactory.user.current = login.user)
+      // .then(resp => console.log("the response", resp))
+      .then(resp => authFactory.user= resp.data)
+      .then(()=> console.log(authFactory.user))
+      // .then((resp) => authFactory.user = resp.data)
       .catch(err => console.error("the error", err));
   };
 });

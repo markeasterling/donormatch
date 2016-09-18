@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^register$', views.register_user, name='register_user'),
     url(r'^login$', views.login_user, name='login'),
+    url(r'^get_request_categories$', views.request_categories, name='get_request_categories')
 ]
