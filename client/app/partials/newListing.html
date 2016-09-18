@@ -3,9 +3,17 @@
   {{newListing.chosenCategory[0]}}
 </div>
 
+<form name="test"
+      ng-submit="newListing.test()">
+  <input type="text" name="name" ng-model="newListing.field">
 
-<form name="createListing"
-      ng-submit="postNewListing()"
+  <button type="submit">submit</button>
+</form>
+
+
+
+<form name="postNewListing"
+      ng-submit= "newListing.postNewListing()"
       class="form-horizontal col-sm-6 col-sm-offset-2">
   <div class="form-group">
     <label class="control-label col-sm-4">Grouping:</label>
@@ -16,7 +24,7 @@
               ng-options="grouping[1] for grouping in newListing.grouping_choices"
               required>
         <option value="">-- choose group --</option>
-        <option value=cat[0]</option>
+        <option value=grouping[0]</option>
       </select>
     </div>
 

@@ -19,7 +19,7 @@ class Profile(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-class Request(viewsets.ModelViewSet):
+class RequestObject(viewsets.ModelViewSet):
     model = Request
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
@@ -69,15 +69,43 @@ def login_user(request):
 
 @csrf_exempt
 def request_categories(request):
-    data = json.dumps(Request.model.CATEGORY_CHOICES)
+    data = json.dumps(RequestObject.model.CATEGORY_CHOICES)
     return HttpResponse(data, content_type="application/json")
 
 @csrf_exempt
 def request_grouping(request):
-    data = json.dumps(Request.model.GROUPING_CHOICES)
+    data = json.dumps(RequestObject.model.GROUPING_CHOICES)
     return HttpResponse(data, content_type="application/json")
 
-# @csrf_exempt
-# def get_current_user(request):
-#
-#     return HttpResponse(request.user.id, content_type="application/json")
+@csrf_exempt
+def testPost(request):
+    data = json.loads(request.body.decode("utf-8"))
+    print(data)
+
+    return HttpResponse(status=200)
+
+@csrf_exempt
+def postNewListing(request):
+    print("it's talking to django")
+    data = json.loads(request.body.decode("utf-8"))
+    creatorP = data["creator"]
+    categoryP = data["category"]
+    groupingP = data["grouping"]
+    nameP = data["name"]
+    descriptionP = data["description"]
+    endP = data["end"]
+    emailP = data["email"]
+    phoneP = data["phone"]
+    print("this here's the data", data)
+
+    listing_object = Request(creator=creatorP,
+                             category=categoryP,
+                             grouping=groupingP,
+                             name=nameP,
+                             description=descriptionP,
+                             end=endP,
+                             email=emailP,
+                             phone=phoneP)
+    print("listing",listing_object)
+    listing_object.save()
+    return HttpResponse(status=200)
