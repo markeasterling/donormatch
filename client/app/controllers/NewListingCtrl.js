@@ -12,16 +12,28 @@ app.controller('NewListingCtrl', function($http, $location, authFactory) {
     .then((response => newListing.grouping_choices = response.data))
       .then(() => console.log(newListing.grouping_choices))
 
-//   newListing.get_current_user = () => {
-//     $http.get("http://localhost:8000/get_current_user")
-//       .then((response) => newListing.currentUser = response.data[0])
-// }
-  // $http({
-  //   url:'http://localhost8000/request/',
-  //   method: 'POST',
-  //   data: { "creator": `http://localhost:8000/user/${newlisting.userPk}/`,
-  //           "category":
-  //   }
-  // })
+
+  function postNewListing() {
+    $http({
+      url:'http://localhost8000/request/',
+      method: 'POST',
+      headers: {
+            "Content-Type": "application/json"
+              },
+      data: { "creator": `http://localhost:8000/user/${newListing.userPk}/`,
+      "category": newListing.chosenCategory,
+      "grouping": newListing.chosenGrouping,
+      "name": newListing.requestName,
+      "description": newListing.requestDescription,
+      "end": newListing.endDate,
+      "email": newListing.email,
+      "phone": newListing.phone
+      },
+    }).sucess(res => {
+      if (res.success) {
+        console.log("it works")
+      }
+    }).error(console.error)
+  }
 
 })
