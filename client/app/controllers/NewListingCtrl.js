@@ -24,7 +24,7 @@ app.controller('NewListingCtrl', function($http, $location, authFactory) {
   }
 
   newListing.postNewListing = function() {
-    dataToPost = {"creator": `http://localhost:8000/user/1`, //${newListing.userPk}
+    dataToPost = {"creator": `${newListing.userPk}`,
     "category": newListing.chosenCategory[0],
     "grouping": newListing.chosenGrouping[0],
     "name": newListing.requestName,

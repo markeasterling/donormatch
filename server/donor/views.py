@@ -98,7 +98,7 @@ def postNewListing(request):
     phoneP = data["phone"]
     print("this here's the data", data)
 
-    listing_object = Request(creator=creatorP,
+    listing_object = Request(creator=User.objects.get(pk=int(creatorP)),
                              category=categoryP,
                              grouping=groupingP,
                              name=nameP,
