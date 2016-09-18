@@ -8,6 +8,10 @@ app.controller('NewListingCtrl', function($http, $location, authFactory) {
     .then((response => newListing.request_categories = response.data))
       .then(() => console.log(newListing.request_categories))
 
+  $http.get("http://localhost:8000/get_grouping_choices")
+    .then((response => newListing.grouping_choices = response.data))
+      .then(() => console.log(newListing.grouping_choices))
+
 //   newListing.get_current_user = () => {
 //     $http.get("http://localhost:8000/get_current_user")
 //       .then((response) => newListing.currentUser = response.data[0])

@@ -72,6 +72,11 @@ def request_categories(request):
     data = json.dumps(Request.model.CATEGORY_CHOICES)
     return HttpResponse(data, content_type="application/json")
 
+@csrf_exempt
+def request_grouping(request):
+    data = json.dumps(Request.model.GROUPING_CHOICES)
+    return HttpResponse(data, content_type="application/json")
+
 # @csrf_exempt
 # def get_current_user(request):
 #
