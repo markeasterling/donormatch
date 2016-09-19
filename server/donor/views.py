@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
+from django.core import serializers
 from donor.models import Profile, Request, Message
 from donor.serializers import UserSerializer, ProfileSerializer, RequestSerializer, MessageSerializer
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -18,7 +19,7 @@ class Profile(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-class Request(viewsets.ModelViewSet):
+class RequestObject(viewsets.ModelViewSet):
     model = Request
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
@@ -55,8 +56,56 @@ def login_user(request):
     success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
+        print("request user", request.user.id)
+
     else:
         success = False
 
-    data = json.dumps({"success":success})
+    # data = json.dumps({"success":success})
+    data = json.dumps({"userId":request.user.id,
+                       "username": request.user.username
+                        })
     return HttpResponse(data, content_type='application/json')
+
+@csrf_exempt
+def request_categories(request):
+    data = json.dumps(RequestObject.model.CATEGORY_CHOICES)
+    return HttpResponse(data, content_type="application/json")
+
+@csrf_exempt
+def request_grouping(request):
+    data = json.dumps(RequestObject.model.GROUPING_CHOICES)
+    return HttpResponse(data, content_type="application/json")
+
+@csrf_exempt
+def testPost(request):
+    data = json.loads(request.body.decode("utf-8"))
+    print(data)
+
+    return HttpResponse(status=200)
+
+@csrf_exempt
+def postNewListing(request):
+    print("it's talking to django")
+    data = json.loads(request.body.decode("utf-8"))
+    creatorP = data["creator"]
+    categoryP = data["category"]
+    groupingP = data["grouping"]
+    nameP = data["name"]
+    descriptionP = data["description"]
+    endP = data["end"]
+    emailP = data["email"]
+    phoneP = data["phone"]
+    print("this here's the data", data)
+
+    listing_object = Request(creator=User.objects.get(pk=int(creatorP)),
+                             category=categoryP,
+                             grouping=groupingP,
+                             name=nameP,
+                             description=descriptionP,
+                             end=endP,
+                             email=emailP,
+                             phone=phoneP)
+    print("listing",listing_object)
+    listing_object.save()
+    return HttpResponse(status=200)
