@@ -2,8 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
+    CATEGORY_CHOICES = (
+        ("organization", "Organization"),
+        ("individual", "Individual")
+    )
     user = models.OneToOneField(User)
-    category = models.CharField(max_length=75)
+    category = models.CharField(max_length=75, choices=CATEGORY_CHOICES)
     informationNumber = models.CharField(max_length=75, blank=True)
     address = models.CharField(max_length=150, blank=True)
     phone = models.CharField(max_length=75, blank=True)
@@ -15,10 +19,10 @@ class Request(models.Model):
         (REQUEST, 'request'),
         (OFFER, 'offer'),
     )
-    HEALTH = 'health'
-    DURABLE = 'durable'
-    PERISHABLE = 'perishable'
-    NONPERISHABLE = 'nonperishable'
+    # HEALTH = 'health'
+    # DURABLE = 'durable'
+    # PERISHABLE = 'perishable'
+    # NONPERISHABLE = 'nonperishable'
     CATEGORY_CHOICES = (
         ('health', 'health/first aid'),
         ('durable', 'durable goods'),
