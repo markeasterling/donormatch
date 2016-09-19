@@ -129,3 +129,16 @@ def post_profile_info(request):
     print("profile obj", profile_object)
     profile_object.save()
     return HttpResponse(status=200)
+
+@csrf_exempt
+def send_message(request):
+    print('request is interfacing')
+    data = json.loads(request.body.decode("utf-8"))
+    print('DAT DATA, DOE', data)
+
+    message_object = Message(sender=User.objects.get(pk=int(data["sender"])),
+                             recipient=User.objects.get(pk=int(data["sender"])),
+                             text=data["text"])
+    print("MSG OBJECT", message_object)
+    message_object.save()
+    return HttpResponse(status=200)

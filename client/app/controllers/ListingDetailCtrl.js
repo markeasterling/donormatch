@@ -16,11 +16,10 @@ app.controller("ListingDetailCtrl", function($http, $location, $routeParams, $ti
         .then(() => {console.log(listingDetail.selectedListing)})
 
     listingDetail.sendMessage = function() {
-      console.log("poof")
-      console.log("id of the listing poster",listingDetail.creator.id)
       dataToPost = {"sender": `${listingDetail.userPk}`,
                     "recipient": listingDetail.creator.id,
                     "text": listingDetail.message}
+      console.log("here's the data to post",dataToPost)
 
       $http.post("http://localhost:8000/send_message",
         dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
