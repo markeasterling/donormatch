@@ -11,7 +11,7 @@ app.controller("ProfileInfoCtrl", function($http, $location, authFactory) {
     console.log("poof")
     dataToPost = {"user": `${profileInfo.userPk}`,
                   "category": profileInfo.chosenChoice[0],
-                  "informationNumber": profileInfo.informationNumber,
+                  "EIN": profileInfo.informationNumber,
                   "address": profileInfo.address,
                   "phone": profileInfo.phone}
 

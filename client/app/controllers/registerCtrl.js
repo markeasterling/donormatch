@@ -1,5 +1,5 @@
 app.controller("RegisterCtrl", function($http, $location, authFactory) {
-  const register = this;
+  const register = this
 
   register.submit = () => {
     $http.post("http://localhost:8000/register",

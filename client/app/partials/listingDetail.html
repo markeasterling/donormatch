@@ -1,0 +1,21 @@
+<h1>listing detailsssss</h1>
+<div>Title: {{ listingDetail.selectedListing.name }}</div>
+<div>Description: {{ listingDetail.selectedListing.description}}</div>
+<div>Posted by: {{ listingDetail.creator.username}}</div>
+
+<form name="sendMessage"
+      ng-submit="listingDetail.sendMessage()"
+      class="form-horizontal col-sm-6 col-sm-offset-2">
+  <div class="form-group">
+    <label class="control-label col-sm-4">Message the creator:</label>
+    <textarea class="col-sm-8"
+              name="message"
+              rows="8" cols="40"
+              ng-model="listingDetail.message"></textarea>
+    <div class="text-right">
+      <button type="submit"
+        class="btn btn-primary">Submit
+      </button>
+    </div>
+  </div>
+</form>

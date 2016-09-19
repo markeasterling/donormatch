@@ -25,5 +25,10 @@ app.config(($routeProvider) => (
       controllerAs: "viewListings",
       templateUrl: "app/partials/viewListings.html"
     })
-    .otherwise("/")
+    .when("/viewlistings/:listingId", {
+      controller: "ListingDetailCtrl",
+      controllerAs: "listingDetail",
+      templateUrl: "app/partials/listingDetail.html"
+    })
+    // .otherwise("/")
 ))
