@@ -4,9 +4,9 @@ from donor import views
 
 router = routers.DefaultRouter()
 router.register(r'user', views.UserObject)
-router.register(r'profile', views.Profile)
+router.register(r'profile', views.ProfileObject)
 router.register(r'request', views.RequestObject)
-router.register(r'message', views.Message)
+router.register(r'message', views.MessageObject)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^get_request_categories$', views.request_categories, name='get_request_categories'),
     url(r'^get_grouping_choices$', views.request_grouping, name='get_grouping_choices'),
     url(r'^post_new_listing$', views.postNewListing, name="post_new_listing"),
-    url(r'^test$', views.testPost, name="test"),
+    # url(r'^test$', views.testPost, name="test"),
 
 ]

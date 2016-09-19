@@ -14,7 +14,7 @@ class UserObject(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class Profile(viewsets.ModelViewSet):
+class ProfileObject(viewsets.ModelViewSet):
     model = Profile
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
@@ -24,7 +24,7 @@ class RequestObject(viewsets.ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
-class Message(viewsets.ModelViewSet):
+class MessageObject(viewsets.ModelViewSet):
     model = Message
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
@@ -77,12 +77,12 @@ def request_grouping(request):
     data = json.dumps(RequestObject.model.GROUPING_CHOICES)
     return HttpResponse(data, content_type="application/json")
 
-@csrf_exempt
-def testPost(request):
-    data = json.loads(request.body.decode("utf-8"))
-    print(data)
-
-    return HttpResponse(status=200)
+# @csrf_exempt
+# def testPost(request):
+#     data = json.loads(request.body.decode("utf-8"))
+#     print(data)
+#
+#     return HttpResponse(status=200)
 
 @csrf_exempt
 def postNewListing(request):
