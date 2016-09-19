@@ -1,16 +1,4 @@
 <h1>{{newListing.title}}</h1>
-<div>
-  {{newListing.chosenCategory[0]}}
-</div>
-
-<form name="test"
-      ng-submit="newListing.test()">
-  <input type="text" name="name" ng-model="newListing.field">
-
-  <button type="submit">submit</button>
-</form>
-
-
 
 <form name="postNewListing"
       ng-submit= "newListing.postNewListing()"
