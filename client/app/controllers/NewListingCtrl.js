@@ -27,8 +27,8 @@ app.controller('NewListingCtrl', function($http, $location, authFactory) {
       .success(res => {
         if (res.success) {
           console.log("it works")
-      }
-    }).error(console.error)
+        }
+      }).error(console.error)
   }
 
 })
