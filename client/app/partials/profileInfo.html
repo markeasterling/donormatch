@@ -10,10 +10,10 @@
       <select name="type"
               class="select-input form-control"
               ng-model="profileInfo.type"
-              
+              ng-options="choice[1] for choice in profileInfo.profileChoices"
               required>
         <option value="">-- choose group --</option>
-        <option value=</option>
+        <option value=choice[0]</option>
       </select>
     </div>
 
