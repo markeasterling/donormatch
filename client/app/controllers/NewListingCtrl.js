@@ -1,5 +1,5 @@
 app.controller('NewListingCtrl', function($http, $location, authFactory) {
-  const newListing = this;
+  const newListing = this
   newListing.title = 'Post New Listing'
   newListing.username = authFactory.user.username
   newListing.userPk = authFactory.user.userId
@@ -21,7 +21,7 @@ app.controller('NewListingCtrl', function($http, $location, authFactory) {
     "end": newListing.endDate,
     "email": newListing.email,
     "phone": newListing.phone}
-  
+
     $http.post("http://localhost:8000/post_new_listing",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
       .success(res => {

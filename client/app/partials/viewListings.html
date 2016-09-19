@@ -1,1 +1,5 @@
 <h1>all the listings</h1>
+
+<div ng-repeat="listing in viewListings.listings">
+  <div>{{ $index+1 }}...{{ listing }}...{{ listing.id }}</div>
+</div>
