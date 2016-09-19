@@ -2,12 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-
     CATEGORY_CHOICES = (
         ("organization", "Organization"),
         ("individual", "Individual")
     )
-
     user = models.OneToOneField(User)
     category = models.CharField(max_length=75, choices=CATEGORY_CHOICES)
     informationNumber = models.CharField(max_length=75, blank=True)

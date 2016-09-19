@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^get_request_categories$', views.request_categories, name='get_request_categories'),
     url(r'^get_grouping_choices$', views.request_grouping, name='get_grouping_choices'),
     url(r'^post_new_listing$', views.postNewListing, name="post_new_listing"),
+    url(r'^get_profile_choices$', views.request_profile_choices, name='get_profile_choices'),
     # url(r'^test$', views.testPost, name="test"),
 
 ]

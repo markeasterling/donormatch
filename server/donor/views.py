@@ -77,6 +77,11 @@ def request_grouping(request):
     data = json.dumps(RequestObject.model.GROUPING_CHOICES)
     return HttpResponse(data, content_type="application/json")
 
+@csrf_exempt
+def request_profile_choices(request):
+    data = json.dumps(ProfileObject.model.CATEGORY_CHOICES)
+    return HttpResponse(data, content_type="application/json")
+
 # @csrf_exempt
 # def testPost(request):
 #     data = json.loads(request.body.decode("utf-8"))
