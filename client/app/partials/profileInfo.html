@@ -9,7 +9,7 @@
     <div class="col-sm-8">
       <select name="type"
               class="select-input form-control"
-              ng-model="profileInfo.type"
+              ng-model="profileInfo.chosenChoice"
               ng-options="choice[1] for choice in profileInfo.profileChoices"
               required>
         <option value="">-- choose group --</option>
@@ -21,9 +21,9 @@
     <label class="control-label col-sm-4">Enter your EIN number</label>
     <div class="col-sm-8">
       <input type="text"
-             name="category"
+             name="informationNumber"
              class="form-control"
-             ng-model="profileInfo.category">
+             ng-model="profileInfo.informationNumber">
     </div>
 
     <label class="control-label col-sm-4">Phone Number</label>

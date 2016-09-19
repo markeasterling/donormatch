@@ -114,3 +114,18 @@ def postNewListing(request):
     print("listing",listing_object)
     listing_object.save()
     return HttpResponse(status=200)
+
+@csrf_exempt
+def post_profile_info(request):
+    print("request is interfacing")
+    data = json.loads(request.body.decode("utf-8"))
+    print("DATA DATA ATA DATA DATA", data)
+
+    profile_object = Profile(user=User.objects.get(pk=int(data["user"])),
+                             category=data["category"],
+                             informationNumber=data["informationNumber"],
+                             address=data["address"],
+                             phone=data["phone"])
+    print("profile obj", profile_object)
+    profile_object.save()
+    return HttpResponse(status=200)

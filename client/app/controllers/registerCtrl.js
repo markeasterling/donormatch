@@ -5,8 +5,8 @@ app.controller("RegisterCtrl", function($http, $location, authFactory) {
     $http.post("http://localhost:8000/register",
       register.user,
       {headers: {"Content-Type": "application/json"}})
-        .then(resp => console.log("the response", resp))
-        .then(() => authFactory.user.current = register.user)
+        .then(resp => authFactory.user= resp.data)
+        .then(() => console.log("user obj from authFactory", authFactory.user))
         .then(() => {$location.path("/profileinfo")}) // temporary routing
         .catch(err => console.error("the error", err));
   };
