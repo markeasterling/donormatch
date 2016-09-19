@@ -6,7 +6,7 @@ class RequestSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Request
-        fields = ('creator', 'category', 'grouping', 'name', 'description', 'start', 'end', 'email', 'phone')
+        fields = ('id', 'creator', 'category', 'grouping', 'name', 'description', 'start', 'end', 'email', 'phone')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     request_set = RequestSerializer(many=True)
@@ -19,11 +19,11 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('user', 'category', 'informationNumber', 'address', 'phone')
+        fields = ('id', 'user', 'category', 'informationNumber', 'address', 'phone')
 
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Message
-        fields = ('sender', 'recipient', 'text', 'created')
+        fields = ('id', 'sender', 'recipient', 'text', 'created')
