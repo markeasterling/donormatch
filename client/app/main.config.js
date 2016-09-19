@@ -18,7 +18,12 @@ app.config(($routeProvider) => (
     .when("/profileinfo", {
       controller: "ProfileInfoCtrl",
       controllerAs: "profileInfo",
-      templateUrl: " app/partials/profileInfo.html"
+      templateUrl: "app/partials/profileInfo.html"
+    })
+    .when("/viewlistings", {
+      controller: "ViewListingsCtrl",
+      controllerAs: "viewListings",
+      templateUrl: "app/partials/viewListings.html"
     })
     .otherwise("/")
 ))
