@@ -8,7 +8,6 @@ app.controller("ProfileInfoCtrl", function($http, $location, authFactory) {
       .then(() => console.log(profileInfo.profileChoices))
 
   profileInfo.postProfileInfo = function() {
-    console.log("poof")
     dataToPost = {"user": `${profileInfo.userPk}`,
                   "category": profileInfo.chosenChoice[0],
                   "EIN": profileInfo.informationNumber,
@@ -22,6 +21,7 @@ app.controller("ProfileInfoCtrl", function($http, $location, authFactory) {
           console.log("it works")
       }
     }).error(console.error)
+        .then(() => {$location.path("/landing")})
   }
 
 

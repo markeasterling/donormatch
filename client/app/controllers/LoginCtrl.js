@@ -8,7 +8,7 @@ app.controller("LoginCtrl", function($http, $location, authFactory) {
       // .then(resp => console.log("the response", resp))
       .then(resp => authFactory.user= resp.data)
       .then(() => console.log("user obj from authFactory", authFactory.user))
-      .then(() => {$location.path("/newlisting")}) // temporary routing
+      .then(() => {$location.path("/landing")}) // temporary routing
       // .catch(err => console.error("the error", err));
   };
 });
