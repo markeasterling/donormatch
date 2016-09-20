@@ -1,6 +1,7 @@
 app.controller("EditListingCtrl", function($http, $location, $routeParams, $timeout, authFactory, $filter) {
   const editListing = this
   editListing.requestName = null
+  editListing.userPk = authFactory.user.userId
 
   //get request categories from API to populate dropdown
   $http.get("http://localhost:8000/get_request_categories")
@@ -20,8 +21,27 @@ app.controller("EditListingCtrl", function($http, $location, $routeParams, $time
           editListing.requestDescription = editListing.listing.description
           editListing.email = editListing.listing.email
           editListing.phone = editListing.listing.phone
-
         })
+
+  editListing.pactchListing = function() {
+    // dataToPatch = {
+    // "name": editListing.requestName,
+    // "description": editListing.requestDescription,
+    // "end": editListing.endDate,
+    // "email": editListing.email,
+    // "phone": editListing.phone}
+
+    dataToPatch = {
+    "name": "patch",
+    "description": "patch",
+    // "end": "editListing.endDate",
+    // "email": "editListing.email",
+    // "phone": "editListing.phone"
+  }
+
+    $http.patch("http://localhost:8000/request/" + $routeParams.listingId + "/",
+      dataToPatch, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
+  }
 
 
 
