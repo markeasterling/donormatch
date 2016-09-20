@@ -30,5 +30,10 @@ app.config(($routeProvider) => (
       controllerAs: "listingDetail",
       templateUrl: "app/partials/listingDetail.html"
     })
+    .when("/landing", {
+      controller: "LandingCtrl",
+      controllerAs: "landing",
+      templateUrl: "app/partials/landing.html"
+    })
     // .otherwise("/")
 ))

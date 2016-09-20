@@ -1,4 +1,3 @@
-console.log("thuehkvjdf")
 var app = angular
   .module("client", ["ngRoute"])
   .config(function($httpProvider) {

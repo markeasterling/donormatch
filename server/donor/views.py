@@ -123,7 +123,7 @@ def post_profile_info(request):
 
     profile_object = Profile(user=User.objects.get(pk=int(data["user"])),
                              category=data["category"],
-                             informationNumber=data["informationNumber"],
+                             informationNumber=data["EIN"],
                              address=data["address"],
                              phone=data["phone"])
     print("profile obj", profile_object)
