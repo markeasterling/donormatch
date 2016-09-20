@@ -3,7 +3,7 @@ app.controller("LandingCtrl", function($http, $location, $routeParams, authFacto
   landing.title = "Landing"
   landing.userId = authFactory.user.userId
 
-  $http.get(`http://localhost:8000/user/${landing.userId}`)
+  $http.get(`http://localhost:8000/user/8`) //${landing.userId}
     .then(result => landing.user = result.data)
       .then(() => console.log(landing.user))
 

@@ -1,5 +1,21 @@
 <h1>{{ landing.title }}</h1>
 
 <ul ng-repeat="request in landing.user.request_set">
-  <li>{{request.name}}</li>
+  <li>
+
+    <div>{{request.name}}</div>
+    <div>{{request.description}}</div>
+
+    <a href="/#/editlisting/{{request.id}}">
+      <button type="button" name="button">
+        Edit
+      </button>
+    </a>
+    <a href="/#/deletelisting/{{request.id}}">
+      <button type="button" name="button">
+        Delete
+      </button>
+    </a>
+
+  </li>
 </ul>

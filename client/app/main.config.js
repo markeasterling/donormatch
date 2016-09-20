@@ -35,5 +35,15 @@ app.config(($routeProvider) => (
       controllerAs: "landing",
       templateUrl: "app/partials/landing.html"
     })
+    .when("/deletelisting/:listingId", {
+      controller: "DeleteListingCtrl",
+      controllerAs: "deleteListing",
+      templateUrl: "app/partials/deleteListing.html"
+    })
+    .when("/editlisting/:listingId", {
+      controller: "EditListingCtrl",
+      controllerAs: "editListing",
+      templateUrl: "app/partials/editListing.html"
+    })
     // .otherwise("/")
 ))
