@@ -1,1 +1,5 @@
 <h1>{{ landing.title }}</h1>
+
+<ul ng-repeat="request in landing.user.request_set">
+  <li>{{request.name}}</li>
+</ul>
