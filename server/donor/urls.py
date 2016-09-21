@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^get_profile_choices$', views.request_profile_choices, name='get_profile_choices'),
     url(r'^post_profile_info$', views.post_profile_info, name='post_profile_info'),
     url(r'^send_message$', views.send_message, name='send_message'),
+    url(r'^get_messages$', views.get_messages, name='get_messages'),
 
     # url(r'^test$', views.testPost, name="test"),
 

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="">
+    {{messageDetail.sender.username}} sent on
+    {{messageDetail.selectedMessage.created | date}}:
+  </div>
+
+  <div class="">
+    {{messageDetail.selectedMessage.text}}
+  </div>
+
+  <form name="sendMessage"
+        ng-submit="messageDetail.sendMessage()"
+        class="form-horizontal col-sm-6 col-sm-offset-2">
+    <div class="form-group">
+      <label class="control-label col-sm-4">Message the creator:</label>
+      <textarea class="col-sm-8"
+                name="message"
+                rows="3"
+                ng-model="messageDetail.message"></textarea>
+      <div class="text-right">
+        <button type="submit"
+          class="btn btn-primary">Submit
+        </button>
+      </div>
+    </div>
+  </form>
+
+</div>
