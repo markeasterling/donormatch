@@ -1,6 +1,8 @@
 <h1>all listings</h1>
 
-<div class="container" ng-repeat="listing in viewListings.listings | date">
+<input type="text" name="name" ng-model="search">
+
+<div class="container" ng-repeat="listing in viewListings.listings | filter:search">
   <div class="">
     {{listing.grouping}}:
   </div>
