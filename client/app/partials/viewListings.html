@@ -6,19 +6,23 @@
     <input type="text" placeholder="try: volunteer!" ng-model="search" >
   </div>
   <div class= "col-sm-6">
-    <label class="">search for: </label>
-    <input type="radio" ng-model="search" value="request" > requests</input>
-    <input type="radio" ng-model="search" value="offer" > offers</input>
+    <label class="">Search for: </label>
+    <input type="radio" ng-model="search" value="request" > requests
+    <input type="radio" ng-model="search" value="offer" > offers
   </div>
 </div>
 
 <div class="container">
-
-    <div class="" ng-repeat="listing in viewListings.listings | filter:search">
-      <div class="">
-        {{listing.grouping}}:
-      </div>
-    <a href="/#/viewlistings/{{listing.id}}">{{ listing.name }}</a>
+  <div class="" ng-repeat="listing in viewListings.listings | filter:search">
+    <div class="listing-grouping">
+      {{listing.grouping}}:
+    </div>
+    <div class="listing-name">
+      <a href="/#/viewlistings/{{listing.id}}">{{ listing.name }}</a>
+    </div>
+    <div class="listing-date">
+      Posted: {{listing.start | date}}
+    </div>
     <div>____________</div>
   </div>
 </div>
