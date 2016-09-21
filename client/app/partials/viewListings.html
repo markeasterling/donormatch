@@ -1,11 +1,24 @@
 <h1>all listings</h1>
 
-<input type="text" name="name" ng-model="search">
-
-<div class="container" ng-repeat="listing in viewListings.listings | filter:search">
-  <div class="">
-    {{listing.grouping}}:
+<div class="container search-bar">
+  <div class= "col-sm-6">
+    <label class="">Search all listings for:</label>
+    <input type="text" placeholder="try: volunteer!" ng-model="search" >
   </div>
-  <a href="/#/viewlistings/{{listing.id}}">{{ listing.name }}</a>
-  <div>____________</div>
+  <div class= "col-sm-6">
+    <label class="">search for: </label>
+    <input type="radio" ng-model="search" value="request" > requests</input>
+    <input type="radio" ng-model="search" value="offer" > offers</input>
+  </div>
+</div>
+
+<div class="container">
+
+    <div class="" ng-repeat="listing in viewListings.listings | filter:search">
+      <div class="">
+        {{listing.grouping}}:
+      </div>
+    <a href="/#/viewlistings/{{listing.id}}">{{ listing.name }}</a>
+    <div>____________</div>
+  </div>
 </div>
