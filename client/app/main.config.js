@@ -45,5 +45,16 @@ app.config(($routeProvider) => (
       controllerAs: "editListing",
       templateUrl: "app/partials/editListing.html"
     })
+    .when("/viewmessages", {
+      controller: "ViewMessagesCtrl",
+      controllerAs: "viewMessages",
+      templateUrl: "app/partials/viewMessages.html"
+    })
+    .when("/viewmessage/:messageId", {
+      controller: "ViewMessagesDetailCtrl",
+      controllerAs: "messageDetail",
+      templateUrl: "app/partials/viewMessagesDetail.html"
+    })
+
     // .otherwise("/")
 ))
