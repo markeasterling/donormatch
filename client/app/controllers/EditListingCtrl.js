@@ -32,15 +32,15 @@ app.controller("EditListingCtrl", function($http, $location, $routeParams, $time
     // "phone": editListing.phone}
 
     dataToPatch = {
-    "name": "patch",
-    "description": "patch",
+    "name": "patchy",
+    "description": "patchy",
     // "end": "editListing.endDate",
     // "email": "editListing.email",
     // "phone": "editListing.phone"
   }
 
     $http.patch("http://localhost:8000/request/" + $routeParams.listingId + "/",
-      dataToPatch, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
+      dataToPatch, {headers:{"Content-Type": 'application/json'}})
   }
 
 

@@ -150,8 +150,7 @@ def get_messages(request):
     data = json.loads(request.body.decode("utf-8"))
     print("HERES THE DATA_-----------------------", data)
     message_object = Message.objects.filter(
-        Q(sender=int(data["user"])) | Q(recipient=int(data["user"]))
-    ).values()
+        Q(sender=int(data["user"])) | Q(recipient=int(data["user"]))).values()
     # message_object.save()
 
     data = json.dumps(list(message_object), cls=DjangoJSONEncoder)
