@@ -1,1 +1,9 @@
 <h1>heyeye</h1>
+
+<div class="container">
+  <div ng-repeat="message in viewMessages.messages">
+    <div ng-if="message.recipient_id == viewMessages.userPk">
+      {{message}}
+    </div>
+  </div>
+</div>
