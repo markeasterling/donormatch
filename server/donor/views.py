@@ -7,7 +7,9 @@ from donor.models import Profile, Request, Message
 from donor.serializers import UserSerializer, ProfileSerializer, RequestSerializer, MessageSerializer
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 class UserObject(viewsets.ModelViewSet):
     model = User
@@ -142,3 +144,15 @@ def send_message(request):
     print("MSG OBJECT", message_object)
     message_object.save()
     return HttpResponse(status=200)
+
+@csrf_exempt
+def get_messages(request):
+    data = json.loads(request.body.decode("utf-8"))
+    print("HERES THE DATA_-----------------------", data)
+    message_object = Message.objects.filter(
+        Q(sender=int(data["user"])) | Q(recipient=int(data["user"]))
+    ).values()
+    # message_object.save()
+
+    data = json.dumps(list(message_object), cls=DjangoJSONEncoder)
+    return HttpResponse(data, content_type="application/json")
