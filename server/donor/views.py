@@ -139,7 +139,7 @@ def send_message(request):
     print('DAT DATA, DOE', data)
 
     message_object = Message(sender=User.objects.get(pk=int(data["sender"])),
-                             recipient=User.objects.get(pk=int(data["sender"])),
+                             recipient=User.objects.get(pk=int(data["recipient"])),
                              text=data["text"])
     print("MSG OBJECT", message_object)
     message_object.save()

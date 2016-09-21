@@ -2,8 +2,13 @@
 
 <div class="container">
   <div ng-repeat="message in viewMessages.messages">
-    <div ng-if="message.recipient_id == viewMessages.userPk">
-      {{message}}
+    <div ng-if="message.recipient_id == 8">
+      <div>{{message.created | date}}</div>
+      <a href="/#/viewmessage/{{message.id}}">
+        <div>{{message.text}}</div>
+      </a>
+
+
     </div>
   </div>
 </div>
