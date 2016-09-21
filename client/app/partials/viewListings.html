@@ -1,7 +1,9 @@
 <h1>all listings</h1>
 
-<div ng-repeat="listing in viewListings.listings">
+<div class="container" ng-repeat="listing in viewListings.listings | date">
+  <div class="">
+    {{listing.grouping}}:
+  </div>
   <a href="/#/viewlistings/{{listing.id}}">{{ listing.name }}</a>
-  <div>Posted by: {{listing.creator}}</div>
   <div>____________</div>
 </div>

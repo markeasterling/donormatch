@@ -22,9 +22,8 @@ app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams
     $http.post("http://localhost:8000/send_message",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
       .success(res => {
-        if (res.success) {
-          console.log("it works")
-        }
+        console.log("success")
+        $location.path("/viewmessages")
       }).error(console.error)
   }
 
