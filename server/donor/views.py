@@ -94,6 +94,7 @@ def request_profile_choices(request):
 @csrf_exempt
 def postNewListing(request):
     print("it's talking to django")
+    print(request.body)
     data = json.loads(request.body.decode("utf-8"))
     creatorP = data["creator"]
     categoryP = data["category"]
