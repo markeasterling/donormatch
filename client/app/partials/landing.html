@@ -3,6 +3,11 @@
 <div class="container">
   <div class="col-sm-6">
     <h3>Your listings</h3>
+    <button class="btn btn-success btn-md"
+            type="button"
+            ng-click="landing.newListing()">
+      New Listing
+    </button>
 
       <div ng-repeat="request in landing.user.request_set">
         <div>
@@ -11,7 +16,7 @@
           <div>{{request.description}}</div>
 
           <a href="/#/editlisting/{{request.id}}">
-            <button class="btn btn-success btn-xs"type="button" name="button">
+            <button class="btn btn-primary btn-xs"type="button" name="button">
               Edit
             </button>
           </a>
@@ -24,4 +29,17 @@
         </div>
       </div>
     </div>
+
+    <div class="col-sm-6">
+      <h3>Your Recent Messages</h3>
+      <div ng-repeat="message in landing.messages | date">
+        <div ng-if="message.recipient_id == 8">
+          <div>{{message.created | date}}</div>
+          <a href="/#/viewmessage/{{message.id}}">
+            <div>{{message.text}}</div>
+          </a>
+
+
+        </div>
+      </div>
 </div>
