@@ -1,8 +1,8 @@
-<h1>{{ landing.title }}</h1>
 
 <div class="container">
-  <div class="col-sm-6">
-    <h3>Your listings</h3>
+  <h1>Welcome, {{landing.name}}.</h1>
+  <div class="col-xs-6">
+    <h3>Your Listings</h3>
     <button class="btn btn-success btn-md"
             type="button"
             ng-click="landing.newListing()">
@@ -10,10 +10,14 @@
     </button>
 
       <div ng-repeat="request in landing.user.request_set">
-        <div>
+        <div class="item-box">
+          <div class="listing-name">
+            {{request.name}}
+          </div>
 
-          <div>{{request.name}}</div>
-          <div>{{request.description}}</div>
+          <div class="listing-description">
+            {{request.description | truncate: 40: " ...": true}}
+          </div>
 
           <a href="/#/editlisting/{{request.id}}">
             <button class="btn btn-primary btn-xs"type="button" name="button">
@@ -30,16 +34,21 @@
       </div>
     </div>
 
-    <div class="col-sm-6">
-      <h3>Your Recent Messages</h3>
-      <div ng-repeat="message in landing.messages | date">
-        <div ng-if="message.recipient_id == 8">
-          <div>{{message.created | date}}</div>
-          <a href="/#/viewmessage/{{message.id}}">
-            <div>{{message.text}}</div>
-          </a>
+    <div class="col-xs-6">
+      <h3>Your Recent Received Messages</h3>
+      <div ng-repeat="message in landing.messages">
+        <a class="remove-link-style" href="/#/viewmessage/{{message.id}}">
+        <div class="item-box" ng-if="message.recipient_id == 8">
 
 
+          <div class="listing-date">
+            Sent {{message.created | date}} :
+          </div>
+
+            <div>
+              {{message.text | truncate: 40: " ...": true}}
+            </div>
         </div>
+      </a>
       </div>
-</div>
+    </div>
