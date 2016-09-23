@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^register$', views.register_user, name='register_user'),
     url(r'^login$', views.login_user, name='login'),
+    url(r'^logout$', views.logout_user, name='logout'),
     url(r'^get_request_categories$', views.request_categories, name='get_request_categories'),
     url(r'^get_grouping_choices$', views.request_grouping, name='get_grouping_choices'),
     url(r'^post_new_listing$', views.postNewListing, name="post_new_listing"),

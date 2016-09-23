@@ -25,6 +25,11 @@ a:hover, a:visited, a:link, a:active
   color: black;
 }
 
-.listing-inline {
-  display: inline;
+.message-detail-info {
+  font-style: italic;
+}
+
+.message-detail-text {
+  font-size: 1.2em;
+  margin: 5px 5px 5px 0;
 }

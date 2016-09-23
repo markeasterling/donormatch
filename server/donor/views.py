@@ -70,6 +70,11 @@ def login_user(request):
     return HttpResponse(data, content_type='application/json')
 
 @csrf_exempt
+def logout_user(request):
+    logout(request)
+    return HttpResponse(status=200)
+
+@csrf_exempt
 def request_categories(request):
     data = json.dumps(RequestObject.model.CATEGORY_CHOICES)
     return HttpResponse(data, content_type="application/json")

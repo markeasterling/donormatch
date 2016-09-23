@@ -1,5 +1,5 @@
 app.factory("authFactory", () => {
-  let user = {current:null};
+  let user = null;
   console.log("authfactory user", user)
 
   return {
