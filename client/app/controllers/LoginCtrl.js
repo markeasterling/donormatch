@@ -10,5 +10,10 @@ app.controller("LoginCtrl", function($http, $location, authFactory) {
       .then(() => console.log("user obj from authFactory", authFactory.user))
       .then(() => {$location.path("/landing")}) // temporary routing
       // .catch(err => console.error("the error", err));
-  };
-});
+  }
+
+  login.register = function() {
+    $location.path("/register")
+  }
+
+})

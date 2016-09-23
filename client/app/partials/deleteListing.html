@@ -1,6 +1,21 @@
-<h1>delete this listing?</h1>
+<div class="container">
 
-{{ deleteListing.listing }}
+  <h1>delete the listing {{deleteListing.listing.name}}?</h1>
 
-<button ng-click="deleteListing.delete()">Yes. Delete This Listing</button>
-<button><a href="/#/landing">No, return to landing</a></button>
+
+
+  <button class="btn btn-success" ng-click="deleteListing.delete()">Yes. Delete This Listing</button>
+  <button class="btn btn-primary" ng-click="deleteListing.backToLanding()">No. return to landing</button>
+
+  <div>
+    <div class="listing-date">
+      {{deleteListing.listing.start | date}} - {{deleteListing.listing.end | date}}
+    </div>
+    <div class="listing-name">
+      {{deleteListing.listing.name}}
+    </div>
+    <div class="listing-description">
+      {{deleteListing.listing.description}}
+    </div>
+  </div>
+</div>
