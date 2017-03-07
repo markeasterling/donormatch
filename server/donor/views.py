@@ -20,9 +20,14 @@ class UserObject(viewsets.ModelViewSet):
 
         queryset = User.objects.all()
         # TODO: what am I actually sending here? an ID? I think I would prefer to send an id vs a username.
-        username = self.request.query_params.get('username', None)
+        username = self.request.query_params.get('username')
         if username is not None:
             queryset = queryset.filter(username=username)
+            # queryset_json = serializers.serialize('json', queryset)
+            # print("print username",username)
+            # print("queryset",list(queryset.values()))
+            # serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
+            # print(serialized_q)
         return queryset
 
 class ProfileObject(viewsets.ModelViewSet):

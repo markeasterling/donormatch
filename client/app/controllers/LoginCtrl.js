@@ -8,7 +8,7 @@ app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $coo
     {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
       // .then(resp => authFactory.user= resp.data)
       .then(resp => {
-        console.log(resp)
+        console.log("login response",resp)
         // authFactory.user = resp.data
         if (resp.status == 200) {
           console.log("yep")
@@ -16,6 +16,7 @@ app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $coo
           const encoded = window.btoa(`${login.user.username}:${login.user.password}`)
           $cookies.put("DonorCredentials", encoded)
           $http.defaults.headers.common.Authorization = "Basic " + encoded
+          UserFactory.user = resp.data
 
         }
       })
