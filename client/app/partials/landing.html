@@ -1,21 +1,54 @@
-<h1>{{ landing.title }}</h1>
 
-<ul ng-repeat="request in landing.user.request_set">
-  <li>
+<div class="container">
+  <h1>Welcome, {{landing.name}}.</h1>
+  <div class="col-xs-6">
+    <h3>Your Listings</h3>
+    <button class="btn btn-success btn-md"
+            type="button"
+            ng-click="landing.newListing()">
+      New Listing
+    </button>
 
-    <div>{{request.name}}</div>
-    <div>{{request.description}}</div>
+      <div ng-repeat="request in landing.user.request_set | reverse">
+        <div class="item-box">
+          <div class="listing-name">
+            {{request.name}}
+          </div>
 
-    <a href="/#/editlisting/{{request.id}}">
-      <button type="button" name="button">
-        Edit
-      </button>
-    </a>
-    <a href="/#/deletelisting/{{request.id}}">
-      <button type="button" name="button">
-        Delete
-      </button>
-    </a>
+          <div class="listing-description">
+            {{request.description | truncate: 40: " ...": true}}
+          </div>
 
-  </li>
-</ul>
+          <a href="/#/editlisting/{{request.id}}">
+            <button class="btn btn-primary btn-xs"type="button" name="button">
+              Edit
+            </button>
+          </a>
+          <a href="/#/deletelisting/{{request.id}}">
+            <button class="btn btn-danger btn-xs" type="button" name="button">
+              Delete
+            </button>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <h3>Your Recent Received Messages</h3>
+      <div ng-repeat="message in landing.messages | reverse">
+        <a href="/#/viewmessage/{{message.id}}">
+        <div class="item-box" ng-if="message.recipient_id == landing.userPk">
+
+
+          <div class="listing-date">
+            Sent {{message.created | date}} :
+          </div>
+
+            <div>
+              {{message.text | truncate: 40: " ...": true}}
+            </div>
+        </div>
+      </a>
+      </div>
+    </div>

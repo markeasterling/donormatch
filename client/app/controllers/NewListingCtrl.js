@@ -25,9 +25,8 @@ app.controller('NewListingCtrl', function($http, $location, authFactory) {
     $http.post("http://localhost:8000/post_new_listing",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
       .success(res => {
-        if (res.success) {
           console.log("it works")
-        }
+          $location.path("/landing")
       }).error(console.error)
   }
 

@@ -2,6 +2,7 @@ app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams
   const messageDetail= this
   messageDetail.userPk = authFactory.user.userId
 
+  //retrieve the username of the message sender
   $http.get("http://localhost:8000/message/" + $routeParams.messageId + "/")
     .then(result => {
         messageDetail.selectedMessage = result.data
@@ -12,6 +13,18 @@ app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams
         $timeout()
       })
         .then(() => {console.log(messageDetail.sender)})
+
+    //retrieve the username of the message recipient
+    $http.get("http://localhost:8000/message/" + $routeParams.messageId + "/")
+      .then(result => {
+          messageDetail.selectedMessage = result.data
+          return $http.get(messageDetail.selectedMessage.recipient)
+      })
+        .then(recipientResult => {
+          messageDetail.recipient = recipientResult.data
+          $timeout()
+        })
+          .then(() => {console.log(messageDetail.recipient)})
 
   messageDetail.sendMessage = function() {
     dataToPost = {"sender": `${messageDetail.userPk}`,

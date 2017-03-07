@@ -10,4 +10,8 @@ app.controller("DeleteListingCtrl", function($http, $location, $routeParams, aut
     $http.delete("http://localhost:8000/request/" + $routeParams.listingId +"/")
     .then(()=>{$location.path("/landing")})
   }
+
+  deleteListing.backToLanding = function() {
+    $location.path("/landing")
+  }
 })
