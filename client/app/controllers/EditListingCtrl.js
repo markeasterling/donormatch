@@ -1,7 +1,12 @@
-app.controller("EditListingCtrl", function($http, $location, $routeParams, $timeout, authFactory, $filter) {
+app.controller("EditListingCtrl", function($http, $location, $routeParams, $timeout, authFactory, $filter, UserFactory) {
   const editListing = this
-  editListing.requestName = null
-  editListing.userPk = authFactory.user.userId
+  editListing.user = {}
+
+  UserFactory.getUser().then((res) => {
+    editListing.user = res
+    editListing.loadRequests()
+    $timeout()
+  })
 
   //get request categories from API to populate dropdown
   $http.get("http://localhost:8000/get_request_categories")
