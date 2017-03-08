@@ -4,7 +4,6 @@ app.controller("EditListingCtrl", function($http, $location, $routeParams, $time
 
   UserFactory.getUser().then((res) => {
     editListing.user = res
-    editListing.loadRequests()
     $timeout()
   })
 
@@ -38,6 +37,8 @@ app.controller("EditListingCtrl", function($http, $location, $routeParams, $time
 
     $http.patch("http://localhost:8000/request/" + $routeParams.listingId + "/",
       dataToPatch, {headers:{"Content-Type": 'application/json'}})
+
+    $location.path("/landing")
   }
 
 
