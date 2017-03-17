@@ -5,7 +5,7 @@
     <h3>Your Received Messages</h3>
     <div ng-repeat="message in viewMessages.messages | reverse">
       <a href="/#/viewmessage/{{message.id}}">
-        <div class="item-box" ng-if="message.recipient_id == viewMessages.userPk">
+        <div class="item-box" ng-if="message.recipient_id == viewMessages.user.id">
           <div>{{message.created | date}}</div>
           <div>{{message.text}}</div>
 
@@ -19,7 +19,7 @@
     <h3>Your Sent Messages</h3>
     <div ng-repeat="message in viewMessages.messages | reverse">
       <a href="/#/viewmessage/{{message.id}}">
-        <div class="item-box" ng-if="message.sender_id == viewMessages.userPk">
+        <div class="item-box" ng-if="message.sender_id == viewMessages.user.id">
           <div>{{message.created | date}}</div>
           <div>{{message.text}}</div>
 

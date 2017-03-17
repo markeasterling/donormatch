@@ -1,7 +1,11 @@
-app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams, authFactory, $timeout) {
+app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams, UserFactory, $timeout) {
   const messageDetail= this
-  messageDetail.userPk = authFactory.user.userId
+  messageDetail.user = {}
 
+  UserFactory.getUser().then((res) => {
+    messageDetail.user = res
+    $timeout()
+  })
   //retrieve the username of the message sender
   $http.get("http://localhost:8000/message/" + $routeParams.messageId + "/")
     .then(result => {
