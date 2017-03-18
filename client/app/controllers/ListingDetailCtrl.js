@@ -1,7 +1,11 @@
-app.controller("ListingDetailCtrl", function($http, $location, $routeParams, $timeout, authFactory) {
+app.controller("ListingDetailCtrl", function($http, $location, $routeParams, $timeout, UserFactory) {
   const listingDetail = this
-  listingDetail.userPk = authFactory.user.userId
+  listingDetail.user = {}
 
+  UserFactory.getUser().then((res) => {
+    listingDetail.user = res
+    $timeout()
+  })
   // let logError = (err) => console.log("error", err)
 
   $http.get("http://localhost:8000/request/" + $routeParams.listingId)
@@ -16,7 +20,7 @@ app.controller("ListingDetailCtrl", function($http, $location, $routeParams, $ti
         .then(() => {console.log(listingDetail.selectedListing)})
 
     listingDetail.sendMessage = function() {
-      dataToPost = {"sender": `${listingDetail.userPk}`,
+      dataToPost = {"sender": `${listingDetail.user.id}`,
                     "recipient": listingDetail.creator.id,
                     "text": listingDetail.message}
       console.log("here's the data to post",dataToPost)
