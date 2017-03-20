@@ -31,7 +31,7 @@ app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams
           .then(() => {console.log(messageDetail.recipient)})
 
   messageDetail.sendMessage = function() {
-    dataToPost = {"sender": `${messageDetail.userPk}`,
+    dataToPost = {"sender": `${messageDetail.user.id}`,
                   "recipient": messageDetail.sender.id,
                   "text": messageDetail.message}
     console.log("here's the data to post",dataToPost)

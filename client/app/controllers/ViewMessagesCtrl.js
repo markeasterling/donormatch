@@ -5,10 +5,13 @@ app.controller("ViewMessagesCtrl", function($http, $location, UserFactory, $loca
   UserFactory.getUser().then((res) => {
     viewMessages.user = res
     $timeout()
+    viewMessages.get_messages()
   })
 
-  $http.post("http://localhost:8000/get_messages",
-  {"user": viewMessages.user.id }, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
-    .then(response => viewMessages.messages = response.data)
-      .then(() => (console.log(viewMessages.messages)))
+  viewMessages.get_messages = function(){
+    $http.post("http://localhost:8000/get_messages",
+    {"user": viewMessages.user.id }, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
+      .then(response => viewMessages.messages = response.data)
+        .then(() => (console.log(viewMessages.messages)))
+  }
 })
