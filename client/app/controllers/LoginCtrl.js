@@ -1,6 +1,9 @@
 app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $cookies) {
   const login = this;
 
+
+
+
   login.login = () => {
     console.log(login.user)
     $http.post("http://localhost:8000/login",
@@ -11,16 +14,25 @@ app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $coo
         console.log("login response",resp)
         // authFactory.user = resp.data
         if (resp.status == 200) {
-          console.log("yep")
+          //console.log("yep")
           //encode the credentials
           const encoded = window.btoa(`${login.user.username}:${login.user.password}`)
           $cookies.put("DonorCredentials", encoded)
           $http.defaults.headers.common.Authorization = "Basic " + encoded
-          UserFactory.user = resp.data
+          console.log(encoded)
+          UserFactory.setEncodedCredentials(encoded)
+          // UserFactory.user = resp.data
+          // UserFactory.declare_user(resp.data)
+          // UserFactory.getUser().then((res=> {
+          //   console.log('LOGIN', res)
+          // }))
+          // console.log('userfactory user object',UserFactory.user)
 
         }
       })
-      .then(() => console.log("user obj from authFactory", UserFactory.user))
+      .then(() => UserFactory.getUser().then((res) =>{
+        console.log(res)
+      }))
       .then(() => {$location.path("/landing")}) // temporary routing
       // .catch(err => console.error("the error", err));
   }
