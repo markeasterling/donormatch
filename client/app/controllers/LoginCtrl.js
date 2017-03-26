@@ -1,40 +1,24 @@
 app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $cookies) {
   const login = this;
-
-
+  login.error = null
 
 
   login.login = () => {
-    console.log(login.user)
     $http.post("http://localhost:8000/login",
     login.user,
     {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
-      // .then(resp => authFactory.user= resp.data)
       .then(resp => {
-        console.log("login response",resp)
-        // authFactory.user = resp.data
-        if (resp.status == 200) {
-          //console.log("yep")
-          //encode the credentials
+        //console.log("login response",resp)
+        if (resp.data.userId !== null) {
           const encoded = window.btoa(`${login.user.username}:${login.user.password}`)
           $cookies.put("DonorCredentials", encoded)
           $http.defaults.headers.common.Authorization = "Basic " + encoded
-          console.log(encoded)
           UserFactory.setEncodedCredentials(encoded)
-          // UserFactory.user = resp.data
-          // UserFactory.declare_user(resp.data)
-          // UserFactory.getUser().then((res=> {
-          //   console.log('LOGIN', res)
-          // }))
-          // console.log('userfactory user object',UserFactory.user)
-
+          $location.path("/landing")
+        } else {
+          login.error ='An error occured. Please try again'
         }
       })
-      .then(() => UserFactory.getUser().then((res) =>{
-        console.log(res)
-      }))
-      .then(() => {$location.path("/landing")}) // temporary routing
-      // .catch(err => console.error("the error", err));
   }
 
   login.register = function() {

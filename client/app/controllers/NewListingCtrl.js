@@ -5,7 +5,6 @@ app.controller('NewListingCtrl', function($http, $location, UserFactory, $timeou
 
   UserFactory.getUser().then((res) => {
     newListing.user = res
-    $timeout()
   })
 
   // get request categories from API for dropdown menu choices
