@@ -18,14 +18,16 @@ app.controller('NewListingCtrl', function($http, $location, UserFactory, $timeou
       .then(() => console.log(newListing.grouping_choices))
 
   newListing.postNewListing = function() {
-    dataToPost = {"creator": `${newListing.user.id}`,
-                  "category": newListing.chosenCategory[0],
-                  "grouping": newListing.chosenGrouping[0],
-                  "name": newListing.requestName,
-                  "description": newListing.requestDescription,
-                  "end": newListing.endDate,
-                  "email": newListing.email,
-                  "phone": newListing.phone}
+    dataToPost = {
+      "creator": `${newListing.user.id}`,
+      "category": newListing.chosenCategory[0],
+      "grouping": newListing.chosenGrouping[0],
+      "name": newListing.requestName,
+      "description": newListing.requestDescription,
+      "end": newListing.endDate,
+      "email": newListing.email,
+      "phone": newListing.phone
+    }
 
     $http.post("http://localhost:8000/post_new_listing",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})

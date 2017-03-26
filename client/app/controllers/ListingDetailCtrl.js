@@ -21,9 +21,11 @@ app.controller("ListingDetailCtrl", function($http, $location, $routeParams, $ti
   }
 
   listingDetail.sendMessage = function() {
-    dataToPost = {"sender": `${listingDetail.user.id}`,
-                  "recipient": listingDetail.creator.id,
-                  "text": listingDetail.message}
+    dataToPost = {
+      "sender": `${listingDetail.user.id}`,
+      "recipient": listingDetail.creator.id,
+      "text": listingDetail.message
+    }
 
     $http.post("http://localhost:8000/send_message",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})

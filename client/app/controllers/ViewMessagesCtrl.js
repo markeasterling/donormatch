@@ -4,7 +4,6 @@ app.controller("ViewMessagesCtrl", function($http, $location, UserFactory, $loca
 
   UserFactory.getUser().then((res) => {
     viewMessages.user = res
-    $timeout()
     viewMessages.get_messages()
   })
 

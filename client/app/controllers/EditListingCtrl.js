@@ -32,11 +32,11 @@ app.controller("EditListingCtrl", function($http, $location, $routeParams, $time
   //update edited listing in API, return to landing
   editListing.pactchListing = function() {
     dataToPatch = {
-    "name": editListing.requestName,
-    "description": editListing.requestDescription,
-    "end": editListing.endDate,
-    "email": editListing.email,
-    "phone": editListing.phone
+      "name": editListing.requestName,
+      "description": editListing.requestDescription,
+      "end": editListing.endDate,
+      "email": editListing.email,
+      "phone": editListing.phone
     }
 
     $http.patch("http://localhost:8000/request/" + $routeParams.listingId + "/",

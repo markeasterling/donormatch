@@ -31,17 +31,18 @@ app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams
           .then(() => {console.log(messageDetail.recipient)})
 
   messageDetail.sendMessage = function() {
-    dataToPost = {"sender": `${messageDetail.user.id}`,
-                  "recipient": messageDetail.sender.id,
-                  "text": messageDetail.message}
-    console.log("here's the data to post",dataToPost)
+    dataToPost = {
+      "sender": `${messageDetail.user.id}`,
+      "recipient": messageDetail.sender.id,
+      "text": messageDetail.message
+    }
 
     $http.post("http://localhost:8000/send_message",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
       .success(res => {
-        console.log("success")
         $location.path("/viewmessages")
-      }).error(console.error)
+      })
+        .error(console.error)
   }
 
 
