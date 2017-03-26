@@ -14,8 +14,3 @@ app.run(function run(UserFactory, $cookies, $http, $location) {
     $location.path("/login")
   }
 })
-
-app.config(function($httpProvider) {
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-});

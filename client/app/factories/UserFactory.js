@@ -1,4 +1,4 @@
-app.factory("UserFactory", ["APIFactory", "$http", function(APIFactory, $http, $cookies) {
+app.factory("UserFactory", ["$http", function($http, $cookies) {
 
   let user = {"userid":null,"username":null}
   let encodedCredentials = ""
