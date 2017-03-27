@@ -1,7 +1,12 @@
-app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams, authFactory, $timeout) {
+app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams, UserFactory, $timeout) {
   const messageDetail= this
-  messageDetail.userPk = authFactory.user.userId
+  messageDetail.user = {}
 
+  UserFactory.getUser().then((res) => {
+    messageDetail.user = res
+    $timeout()
+  })
+  //retrieve the username of the message sender
   $http.get("http://localhost:8000/message/" + $routeParams.messageId + "/")
     .then(result => {
         messageDetail.selectedMessage = result.data
@@ -13,18 +18,31 @@ app.controller("ViewMessagesDetailCtrl", function($http, $location, $routeParams
       })
         .then(() => {console.log(messageDetail.sender)})
 
+    //retrieve the username of the message recipient
+    $http.get("http://localhost:8000/message/" + $routeParams.messageId + "/")
+      .then(result => {
+          messageDetail.selectedMessage = result.data
+          return $http.get(messageDetail.selectedMessage.recipient)
+      })
+        .then(recipientResult => {
+          messageDetail.recipient = recipientResult.data
+          $timeout()
+        })
+          .then(() => {console.log(messageDetail.recipient)})
+
   messageDetail.sendMessage = function() {
-    dataToPost = {"sender": `${messageDetail.userPk}`,
-                  "recipient": messageDetail.sender.id,
-                  "text": messageDetail.message}
-    console.log("here's the data to post",dataToPost)
+    dataToPost = {
+      "sender": `${messageDetail.user.id}`,
+      "recipient": messageDetail.sender.id,
+      "text": messageDetail.message
+    }
 
     $http.post("http://localhost:8000/send_message",
       dataToPost, {headers:{"Content-Type": 'application/x-www-form-urlencoded'}})
       .success(res => {
-        console.log("success")
         $location.path("/viewmessages")
-      }).error(console.error)
+      })
+        .error(console.error)
   }
 
 

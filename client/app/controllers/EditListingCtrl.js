@@ -1,16 +1,22 @@
-app.controller("EditListingCtrl", function($http, $location, $routeParams, $timeout, authFactory, $filter) {
+app.controller("EditListingCtrl", function($http, $location, $routeParams, $timeout, $filter, UserFactory) {
   const editListing = this
-  editListing.requestName = null
-  editListing.userPk = authFactory.user.userId
+  editListing.user = {}
+
+  UserFactory.getUser().then((res) => {
+    editListing.user = res
+    $timeout()
+  })
 
   //get request categories from API to populate dropdown
   $http.get("http://localhost:8000/get_request_categories")
     .then((response => editListing.request_categories = response.data))
       .then(() => console.log(editListing.request_categories))
+
   //get grouping categories from API to populate dropdown
   $http.get("http://localhost:8000/get_grouping_choices")
     .then((response => editListing.grouping_choices = response.data))
       .then(() => console.log(editListing.grouping_choices))
+
   //get listing to be edited, to pre-fill the form
   $http.get("http://localhost:8000/request/" + $routeParams.listingId)
     .then((response => editListing.listing = response.data))
@@ -23,18 +29,20 @@ app.controller("EditListingCtrl", function($http, $location, $routeParams, $time
           editListing.phone = editListing.listing.phone
         })
 
+  //update edited listing in API, return to landing
   editListing.pactchListing = function() {
     dataToPatch = {
-    "name": editListing.requestName,
-    "description": editListing.requestDescription,
-    "end": editListing.endDate,
-    "email": editListing.email,
-    "phone": editListing.phone}
+      "name": editListing.requestName,
+      "description": editListing.requestDescription,
+      "end": editListing.endDate,
+      "email": editListing.email,
+      "phone": editListing.phone
+    }
 
     $http.patch("http://localhost:8000/request/" + $routeParams.listingId + "/",
       dataToPatch, {headers:{"Content-Type": 'application/json'}})
+
+    $location.path("/landing")
   }
-
-
 
 })

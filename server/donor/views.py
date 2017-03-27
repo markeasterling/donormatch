@@ -16,6 +16,20 @@ class UserObject(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def get_queryset(self):
+
+        queryset = User.objects.all()
+        # TODO: what am I actually sending here? an ID? I think I would prefer to send an id vs a username.
+        username = self.request.query_params.get('username')
+        if username is not None:
+            queryset = queryset.filter(username=username)
+            # queryset_json = serializers.serialize('json', queryset)
+            # print("print username",username)
+            # print("queryset",list(queryset.values()))
+            # serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
+            # print(serialized_q)
+        return queryset
+
 class ProfileObject(viewsets.ModelViewSet):
     model = Profile
     queryset = Profile.objects.all()
@@ -70,6 +84,11 @@ def login_user(request):
     return HttpResponse(data, content_type='application/json')
 
 @csrf_exempt
+def logout_user(request):
+    logout(request)
+    return HttpResponse(status=200)
+
+@csrf_exempt
 def request_categories(request):
     data = json.dumps(RequestObject.model.CATEGORY_CHOICES)
     return HttpResponse(data, content_type="application/json")
@@ -94,6 +113,7 @@ def request_profile_choices(request):
 @csrf_exempt
 def postNewListing(request):
     print("it's talking to django")
+    print(request.body)
     data = json.loads(request.body.decode("utf-8"))
     creatorP = data["creator"]
     categoryP = data["category"]

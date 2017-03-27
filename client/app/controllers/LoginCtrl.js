@@ -1,14 +1,28 @@
-app.controller("LoginCtrl", function($http, $location, authFactory) {
+app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $cookies) {
   const login = this;
+  login.error = null
+
 
   login.login = () => {
     $http.post("http://localhost:8000/login",
     login.user,
-    {headers: {"Content-Type": "application/json"}})
-      // .then(resp => console.log("the response", resp))
-      .then(resp => authFactory.user= resp.data)
-      .then(() => console.log("user obj from authFactory", authFactory.user))
-      .then(() => {$location.path("/landing")}) // temporary routing
-      // .catch(err => console.error("the error", err));
-  };
-});
+    {headers: {"Content-Type": "application/x-www-form-urlencoded"}})
+      .then(resp => {
+        //console.log("login response",resp)
+        if (resp.data.userId !== null) {
+          const encoded = window.btoa(`${login.user.username}:${login.user.password}`)
+          $cookies.put("DonorCredentials", encoded)
+          $http.defaults.headers.common.Authorization = "Basic " + encoded
+          UserFactory.setEncodedCredentials(encoded)
+          $location.path("/landing")
+        } else {
+          login.error ='An error occured. Please try again'
+        }
+      })
+  }
+
+  login.register = function() {
+    $location.path("/register")
+  }
+
+})

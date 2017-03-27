@@ -1,0 +1,35 @@
+body {
+  background-color: #BCC0C2
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+.listing-name {
+  font-weight: bold;
+  font-size: 1.2em
+}
+
+.listing-description {
+  font-style: italic;
+}
+
+.item-box {
+  background-color: #638A96;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px 5px 5px 0px;
+  padding: 2px;
+  color: black;
+}
+
+.message-detail-info {
+  font-style: italic;
+}
+
+.message-detail-text {
+  font-size: 1.2em;
+  margin: 5px 5px 5px 0;
+}

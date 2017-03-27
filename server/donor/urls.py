@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^register$', views.register_user, name='register_user'),
     url(r'^login$', views.login_user, name='login'),
+    url(r'^logout$', views.logout_user, name='logout'),
     url(r'^get_request_categories$', views.request_categories, name='get_request_categories'),
     url(r'^get_grouping_choices$', views.request_grouping, name='get_grouping_choices'),
     url(r'^post_new_listing$', views.postNewListing, name="post_new_listing"),
@@ -19,6 +20,7 @@ urlpatterns = [
     url(r'^post_profile_info$', views.post_profile_info, name='post_profile_info'),
     url(r'^send_message$', views.send_message, name='send_message'),
     url(r'^get_messages$', views.get_messages, name='get_messages'),
+    # url(r'^user/(?P<username>.+)/$', views.UserObject.as_view()),
 
     # url(r'^test$', views.testPost, name="test"),
 
