@@ -1,8 +1,8 @@
 app.config(($routeProvider) => (
   $routeProvider
     .when("/register", {
-      controller: "RegisterCtrl",
-      controllerAs: "register",
+      controller: "LoginCtrl",
+      controllerAs: "login",
       templateUrl: "app/partials/register.html"
     })
     .when("/login", {
