@@ -18,5 +18,5 @@ app.controller("LandingCtrl", function($http, $location, $routeParams, UserFacto
   landing.newListing = function() {
     $location.path("/newlisting")
   }
-  
+
 })

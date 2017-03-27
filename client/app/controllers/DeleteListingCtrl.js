@@ -15,4 +15,8 @@ app.controller("DeleteListingCtrl", function($http, $location, $routeParams) {
   deleteListing.backToLanding = function() {
     $location.path("/landing")
   }
+
+  deleteListing.backToLanding = function() {
+    $location.path("/landing")
+  }
 })
