@@ -2,7 +2,7 @@
 Donormatch is a a tool to help facilitate a deeper connection between charitable organizations and the community. Organizations can post requests or offers for services, and individuals can reply with how they would like to help, or offer their own time or donations.
 
 ## Running Donormatch
-First, you'll want to make sure you have pip, npm, and bower installed on your machine. Here are some links to aide in this process
+First, you'll want to make sure you have pip, npm, and bower installed on your machine. Here are some links to aid in this process
 Machines that have python 2 or 3 installed already have pip. Open your command line interface and type python -V. if the version is less than two, [look here.](https://pip.pypa.io/en/stable/installing/)   <br />
 [Installing NPM](http://blog.npmjs.org/post/85484771375/how-to-install-npm) <br />
 [Installing Bower](https://www.npmjs.com/package/bower)
