@@ -20,8 +20,4 @@ urlpatterns = [
     url(r'^post_profile_info$', views.post_profile_info, name='post_profile_info'),
     url(r'^send_message$', views.send_message, name='send_message'),
     url(r'^get_messages$', views.get_messages, name='get_messages'),
-    # url(r'^user/(?P<username>.+)/$', views.UserObject.as_view()),
-
-    # url(r'^test$', views.testPost, name="test"),
-
 ]

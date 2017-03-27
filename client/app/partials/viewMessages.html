@@ -8,8 +8,6 @@
         <div class="item-box" ng-if="message.recipient_id == viewMessages.user.id">
           <div>{{message.created | date}}</div>
           <div>{{message.text}}</div>
-
-
         </div>
       </a>
     </div>
@@ -22,10 +20,9 @@
         <div class="item-box" ng-if="message.sender_id == viewMessages.user.id">
           <div>{{message.created | date}}</div>
           <div>{{message.text}}</div>
-
-
         </div>
       </a>
     </div>
   </div>
+
 </div>

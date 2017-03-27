@@ -50,6 +50,4 @@ app.config(($routeProvider) => (
       controllerAs: "messageDetail",
       templateUrl: "app/partials/viewMessagesDetail.html"
     })
-
-    // .otherwise("/")
 ))
