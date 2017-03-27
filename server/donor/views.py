@@ -19,15 +19,9 @@ class UserObject(viewsets.ModelViewSet):
     def get_queryset(self):
 
         queryset = User.objects.all()
-        # TODO: what am I actually sending here? an ID? I think I would prefer to send an id vs a username.
         username = self.request.query_params.get('username')
         if username is not None:
             queryset = queryset.filter(username=username)
-            # queryset_json = serializers.serialize('json', queryset)
-            # print("print username",username)
-            # print("queryset",list(queryset.values()))
-            # serialized_q = json.dumps(list(queryset), cls=DjangoJSONEncoder)
-            # print(serialized_q)
         return queryset
 
 class ProfileObject(viewsets.ModelViewSet):
@@ -62,7 +56,6 @@ def register_user(request):
 @csrf_exempt
 def login_user(request):
     request_body = json.loads(request.body.decode())
-    print("REQUEST BODY!!!!", request_body)
 
     authenticated_user = authenticate(
             username=request_body['username'],
@@ -72,12 +65,10 @@ def login_user(request):
     success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
-        print("request user", request.user.id)
 
     else:
         success = False
 
-    # data = json.dumps({"success":success})
     data = json.dumps({"userId":request.user.id,
                        "username": request.user.username
                         })
@@ -103,17 +94,8 @@ def request_profile_choices(request):
     data = json.dumps(ProfileObject.model.CATEGORY_CHOICES)
     return HttpResponse(data, content_type="application/json")
 
-# @csrf_exempt
-# def testPost(request):
-#     data = json.loads(request.body.decode("utf-8"))
-#     print(data)
-#
-#     return HttpResponse(status=200)
-
 @csrf_exempt
 def postNewListing(request):
-    print("it's talking to django")
-    print(request.body)
     data = json.loads(request.body.decode("utf-8"))
     creatorP = data["creator"]
     categoryP = data["category"]
@@ -123,7 +105,6 @@ def postNewListing(request):
     endP = data["end"]
     emailP = data["email"]
     phoneP = data["phone"]
-    print("this here's the data", data)
 
     listing_object = Request(creator=User.objects.get(pk=int(creatorP)),
                              category=categoryP,
@@ -133,45 +114,35 @@ def postNewListing(request):
                              end=endP,
                              email=emailP,
                              phone=phoneP)
-    print("listing",listing_object)
     listing_object.save()
     return HttpResponse(status=200)
 
 @csrf_exempt
 def post_profile_info(request):
-    print("request is interfacing")
     data = json.loads(request.body.decode("utf-8"))
-    print("DATA DATA ATA DATA DATA", data)
 
     profile_object = Profile(user=User.objects.get(pk=int(data["user"])),
                              category=data["category"],
                              informationNumber=data["EIN"],
                              address=data["address"],
                              phone=data["phone"])
-    print("profile obj", profile_object)
     profile_object.save()
     return HttpResponse(status=200)
 
 @csrf_exempt
 def send_message(request):
-    print('request is interfacing')
     data = json.loads(request.body.decode("utf-8"))
-    print('DAT DATA, DOE', data)
 
     message_object = Message(sender=User.objects.get(pk=int(data["sender"])),
                              recipient=User.objects.get(pk=int(data["recipient"])),
                              text=data["text"])
-    print("MSG OBJECT", message_object)
     message_object.save()
     return HttpResponse(status=200)
 
 @csrf_exempt
 def get_messages(request):
     data = json.loads(request.body.decode("utf-8"))
-    print("HERES THE DATA_-----------------------", data)
     message_object = Message.objects.filter(
         Q(sender=int(data["user"])) | Q(recipient=int(data["user"]))).values()
-    # message_object.save()
-
     data = json.dumps(list(message_object), cls=DjangoJSONEncoder)
     return HttpResponse(data, content_type="application/json")

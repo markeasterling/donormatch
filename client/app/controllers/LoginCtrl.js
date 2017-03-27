@@ -25,4 +25,13 @@ app.controller("LoginCtrl", function($http, $location, UserFactory, apiUrl, $coo
     $location.path("/register")
   }
 
+  login.submit = () => {
+    console.log('this happened')
+    $http.post("http://localhost:8000/register",
+      login.user,
+      {headers: {"Content-Type": "application/json"}})
+        .then(()=> {login.login()})
+            .catch(err => console.error("the error", err))
+  }
+
 })
