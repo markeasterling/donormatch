@@ -18,7 +18,7 @@ pip install django djangorestframework
 cd server
 ```
 
-At this point you may want to create a superuser to let you browse the API, if so:
+At this point you may want to create a superuser to let you browse the API, if so
 ```
 python manage.py createsuperuser
 --follow prompts--
@@ -30,7 +30,7 @@ python manage.py migrate
 python manage.py runserver
 paste the given url into your browser
 ```
-Then, we will serve the client in a new tab, from the project folder:
+Then, we will serve the client in a new tab, from the project folder
 ```
 cd donormatch/client
 bower install
