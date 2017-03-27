@@ -15,6 +15,7 @@ git clone https://github.com/markeasterling/donormatch.git
 cd donormatch
 echo '3.4.0' > .python-version
 pip install django djangorestframework
+npm install http-server
 cd server
 ```
 
@@ -34,7 +35,6 @@ Then, we will serve the client in a new tab, from the project folder
 ```
 cd donormatch/client
 bower install
-npm install http-server
 http-server
 
 then, copy one of the two "Available on:" URLs into your browser
